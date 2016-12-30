@@ -43,6 +43,7 @@ React 可以直接下载使用，可以从[官网](https://facebook.github.io/re
 需注意两点：
 * 首先，最后一个 script 标签的 type 属性为 text/babel 。这是因为 React 独有的 JSX 语法，跟 JavaScript 不兼容。凡是使用 JSX 的地方，都要加上 type="text/babel" 。
 * 其次，上面代码一共用了三个库： react.js 、react-dom.js 和 Browser.js ，它们必须首先加载。其中，react.js 是 React 的核心库，react-dom.js 是提供与 DOM 相关的功能，Browser.js 的作用是将 JSX 语法转为 JavaScript 语法，这一步很消耗时间，实际上线的时候，应该将它放到服务器完成。
+
 #### 一、React JSX
 ```javascript
 ReactDOM.render(
@@ -55,8 +56,7 @@ ReactDOM.render(
 ReactDOM.render(
 	<div>
 	  <h1>{i == 1 ? 'True!' : 'False'}</h1>
-	</div>
-	,
+	</div>,
 	document.getElementById('example')
 );
 ```
