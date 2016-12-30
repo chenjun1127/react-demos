@@ -51,7 +51,7 @@ ReactDOM.render(
     document.getElementById('example')
 );
 ```
-##### JavaScript 表达式
+##### a）、JavaScript 表达式
 ```javascript
 ReactDOM.render(
 	<div>
@@ -61,3 +61,15 @@ ReactDOM.render(
 );
 ```
 注意：在 JSX 中不能使用 if else 语句，但可以使用 conditional (三元运算) 表达式来替代。以下实例中如果变量 i 等于 1 浏览器将输出 true, 如果修改 i 的值，则会输出 false。
+##### b）、样式
+React 推荐使用内联样式。我们可以使用 camelCase 语法来设置内联样式. React 会在指定元素数字后自动添加 px 。以下实例演示了为 h1 元素添加 myStyle 内联样式：
+```javascript
+var myStyle = {
+	fontSize: 100,
+	color: '#FF0000'
+};
+ReactDOM.render(
+	<h1 style = {myStyle}>菜鸟教程</h1>,
+	document.getElementById('example')
+);
+```
