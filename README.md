@@ -102,34 +102,34 @@ ReactDOM.render(
 React.createClass 方法用于生成一个组件类 HelloMessage。
 注意：原生 HTML 元素名以小写字母开头，而自定义的 React 类名以大写字母开头，比如 HelloMessage 不能写成 helloMessage。除此之外还需要注意组件类只能包含一个顶层标签，否则也会报错。
 如果需要向组件传递参数，可以使用 this.props 对象；
-##### a）、基本组件
+##### b）、复合（组合）组件
 ```javascript
 var data = {
-        name:'Jone',
-        url:'http://www.cj365.cc/'
-    };
-    var Webstie = React.createClass({
-        render:function () {
-            return (
-                <div>
-                    <Title title={this.props.title} name={this.props.name}/>
-                    <Nodelist url={this.props.url}/>
-                </div>
-            )
-        }
-    })
-    var Title = React.createClass({
-        render: function () {
-            return <h1>Hello {this.props.title} '{this.props.name}'</h1>;
-        }
-    });
-    var Nodelist = React.createClass({
-        render: function () {
-            return <p>My website is <a href={this.props.url}>{this.props.url}</a></p>;
-        }
-    });
-    ReactDOM.render(
-        <Webstie name={data.name} title="My name is" url={data.url}/>,
-        document.getElementById('example')
-    )
+    name:'Jone',
+    url:'http://www.cj365.cc/'
+};
+var Webstie = React.createClass({
+    render:function () {
+        return (
+            <div>
+                <Title title={this.props.title} name={this.props.name}/>
+                <Nodelist url={this.props.url}/>
+            </div>
+        )
+    }
+})
+var Title = React.createClass({
+    render: function () {
+        return <h1>Hello {this.props.title} '{this.props.name}'</h1>;
+    }
+});
+var Nodelist = React.createClass({
+    render: function () {
+        return <p>My website is <a href={this.props.url}>{this.props.url}</a></p>;
+    }
+});
+ReactDOM.render(
+    <Webstie name={data.name} title="My name is" url={data.url}/>,
+    document.getElementById('example')
+)
 ```
