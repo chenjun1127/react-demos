@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>真实的DOM节点</title>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/react-dom.js"></script>
+    <script src="../../build/browser.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.4/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var MyInput = React.createClass({
+        handleClick: function () {
+            this.refs.myText.focus();
+            console.log(this)
+            this.refs.myText.style.border = "1px solid red";
+            this.refs.button.value = "我被点击了！"
+        },
+        render: function () {
+            return (
+                    <div>
+                        <input type="text" ref="myText" placeholder="说点什么吧"/>
+                        <input type="button" ref="button" value="Focus the text input" onClick={this.handleClick}/>
+                    </div>
+            )
+        }
+    });
+    ReactDOM.render(
+            <MyInput/>,
+        document.getElementById('example')
+    )
+
+</script>
+</body>
+</html>

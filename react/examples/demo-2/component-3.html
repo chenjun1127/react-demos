@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>component--PropTypes</title>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/react-dom.js"></script>
+    <script src="../../build/browser.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.4/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    //PropTypes验证组件实例的类属性是否符合要求
+    var price = 5, name = "苹果";
+    var Component = React.createClass({
+        // 默认属性
+        getDefaultProps: function () {
+            return {
+                text: '你要多少斤？'
+            };
+        },
+        propTypes: {
+            title: React.PropTypes.number.isRequired,
+            name: React.PropTypes.string.isRequired
+        },
+        render: function () {
+            return <h1>{this.props.name}的价格是{this.props.title}元。{this.props.text}</h1>
+        }
+    })
+    ReactDOM.render(
+        <Component title={price} name={name}/>,
+        document.getElementById("example")
+    )
+</script>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/react-dom.js"></script>
+    <script src="../../build/browser.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.4/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var arr = [
+        <h1>Hello world!</h1>,
+        <h2>This is a react demo!</h2>,
+    ];
+    ReactDOM.render(
+        <div>{arr}</div>,
+        document.getElementById('example')
+    )
+
+</script>
+</body>
+</html>
