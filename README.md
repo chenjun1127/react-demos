@@ -69,7 +69,19 @@ var myStyle = {
 	color: '#FF0000'
 };
 ReactDOM.render(
-	<h1 style = {myStyle}>菜鸟教程</h1>,
+	<h1 style = {myStyle}>Example</h1>,
 	document.getElementById('example')
+);
+```
+##### c）、数组
+JSX 允许在模板中插入数组，数组会自动展开所有成员：
+```javascript
+var arr = [
+  	<h1>Example</h1>,
+  	<h2>This is React demo</h2>,
+];
+ReactDOM.render(
+  	<div>{arr}</div>,
+  	document.getElementById('example')
 );
 ```
