@@ -344,7 +344,6 @@ ReactDOM.render(
 #### 九、React AJAX
 React 组件的数据可以通过 componentDidMount 方法中的 Ajax 来获取，当从服务端获取数据库可以将数据存储在 state 中，再用 this.setState 方法重新渲染 UI。当使用异步加载数据时，在组件卸载前使用 componentWillUnmount 来取消未完成的请求。
 ```javascript
-// 组件的数据来源，通常是通过 Ajax 请求从服务器获取，可以使用 componentDidMount 方法设置 Ajax 请求，等到请求成功，再用 this.setState 方法重新渲染 UI
 var UserGist = React.createClass({
     getInitialState: function () {
         return {
@@ -368,8 +367,7 @@ var UserGist = React.createClass({
     render: function () {
         return (
             <div>
-                My name is {this.state.userName},
-		my blog is <a href={this.state.baseUrl}>{this.state.baseUrl}</a> !
+                My name is {this.state.userName},my blog is <a href={this.state.baseUrl}>{this.state.baseUrl}</a> !
             </div>
         );
     }
@@ -408,8 +406,7 @@ var RepoList = React.createClass({
                 (key) => {
                     return(
                         <li>
-                            <a href={key.html_url}>{key.name}</a> 
-			    ({key.stargazers_count} stars) <br/> {key.description}
+                            <a href={key.html_url}>{key.name}</a> ({key.stargazers_count} stars) <br/> {key.description}
                         </li>
                     )
                 }
