@@ -427,3 +427,10 @@ ReactDOM.render(
 ```
 上面代码从Github的API抓取数据，然后将Promise对象作为属性，传给RepoList组件。
 如果Promise对象正在抓取数据（pending状态），组件显示"正在加载"；如果Promise对象报错（rejected状态），组件显示报错信息；如果Promise对象抓取数据成功（fulfilled状态），组件显示获取的数据。
+
+#### 参考链接：
+* [https://facebook.github.io/react/](https://facebook.github.io/react/)
+* [https://github.com/facebook/react/tree/master/examples](https://github.com/facebook/react/tree/master/examples)
+* [https://scotch.io/tutorials/learning-react-getting-started-and-concepts](https://scotch.io/tutorials/learning-react-getting-started-and-concepts)
+* [http://www.ruanyifeng.com/blog/2015/03/react.html](http://www.ruanyifeng.com/blog/2015/03/react.html)
+* [http://www.runoob.com/react/react-tutorial.html](http://www.runoob.com/react/react-tutorial.html)
