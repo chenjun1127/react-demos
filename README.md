@@ -228,7 +228,8 @@ ReactDOM.render(
 )
 ```
 #### 五、React 组件 API
-* 组件有基本7种方法：
+组件有基本7种方法：
+
 * 设置状态：setState
 * 替换状态：replaceState
 * 设置属性setProps
@@ -286,3 +287,143 @@ React 为每个状态都提供了两种处理函数，will 函数在进入状态
 
 * componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用
 * shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用
+#### 七、React Refs（真实的DOM节点）
+组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 ref 属性；
+```javascript
+var MyInput = React.createClass({
+    handleClick: function () {
+        this.refs.myText.focus();
+        console.log(this)
+        this.refs.myText.style.border = "1px solid red";
+        this.refs.button.value = "我被点击了！"
+    },
+    render: function () {
+        return (
+                <div>
+                    <input type="text" ref="myText" placeholder="说点什么吧"/>
+                    <input type="button" ref="button" value="Focus the text input" onClick={this.handleClick}/>
+                </div>
+        )
+    }
+});
+ReactDOM.render(
+    <MyInput/>,
+    document.getElementById('example')
+)
+```
+#### 八、React 表单与事件
+用户在表单填入的内容，属于用户跟组件的互动，所以不能用 this.props 读取，要使用回调函数；
+```javascript
+var Form = React.createClass({
+    getInitialState:function () {
+        return {
+            value:'hello!'
+        }
+    },
+    handleChange:function(event){
+        this.setState({
+            value:event.target.value
+        })
+    },
+    render:function () {
+        var value = this.state.value;
+        return (
+            <div>
+                <input type="text" value={value} onChange={this.handleChange}/>
+                <p>{value}</p>
+            </div>
+        )
+    }
+})
+ReactDOM.render(
+    <Form/>,
+    document.getElementById("example")
+)
+```
+#### 九、React AJAX
+React 组件的数据可以通过 componentDidMount 方法中的 Ajax 来获取，当从服务端获取数据库可以将数据存储在 state 中，再用 this.setState 方法重新渲染 UI。当使用异步加载数据时，在组件卸载前使用 componentWillUnmount 来取消未完成的请求。
+```javascript
+// 组件的数据来源，通常是通过 Ajax 请求从服务器获取，可以使用 componentDidMount 方法设置 Ajax 请求，等到请求成功，再用 this.setState 方法重新渲染 UI
+var UserGist = React.createClass({
+    getInitialState: function () {
+        return {
+            userName:'',
+            baseUrl:''
+        }
+    },
+    componentDidMount:function () {
+        // React 本身没有任何依赖,可以使用jQuery来发送ajax请求。
+        $.get(this.props.sourceUrl,function (result) {
+            var data = result[0];
+            console.log(data)
+            if(this.isMounted()){  // 判断组件挂载状态：isMounted
+                this.setState({
+                    userName:data.userName,
+                    baseUrl:data.baseUrl
+                })
+            }
+        }.bind(this));
+    },
+    render: function () {
+        return (
+            <div>
+                My name is {this.state.userName},my blog is <a href={this.state.baseUrl}>{this.state.baseUrl}</a> !
+            </div>
+        );
+    }
+})
+ReactDOM.render(
+    <UserGist sourceUrl="info.json"/>,
+    document.getElementById("example")
+)
+```
+上面代码使用 jQuery 完成 Ajax 请求，React 本身没有任何依赖，完全可以不用jQuery，而使用其他库。
+我们甚至可以把一个Promise对象传入组件:
+```javascript
+var RepoList = React.createClass({
+    getInitialState: ()=>{
+        return {
+            loading:true,
+            data:null,
+            error:null,
+        }
+    },
+    componentDidMount:function () {
+        this.props.promise.then(
+            value => this.setState({loading: false, data: value}),
+            error => this.setState({loading: false, error: error})
+        );
+    },
+    render: function () {
+        if(this.state.loading){
+            return <span>Loading...</span>
+        }else if(this.state.error !== null){
+            return <span>error:{this.state.error.message}</span>
+        }else{
+            var repos=this.state.data.items;
+            console.log(repos);
+            var repoList = repos.map(
+                (key) => {
+                    return(
+                        <li>
+                            <a href={key.html_url}>{key.name}</a> ({key.stargazers_count} stars) <br/> {key.description}
+                        </li>
+                    )
+                }
+            )
+        }
+        return (
+            <main>
+                <h1>Most Popular JavaScript Projects in Github</h1>
+                <ol>{repoList}</ol>
+            </main>
+        );
+    }
+})
+ReactDOM.render(
+    <RepoList promise={$.getJSON('https://api.github.com/search/repositories?q=javascript&sort=stars')} />,
+    document.getElementById("example")
+)
+```
+上面代码从Github的API抓取数据，然后将Promise对象作为属性，传给RepoList组件。
+如果Promise对象正在抓取数据（pending状态），组件显示"正在加载"；如果Promise对象报错（rejected状态），组件显示报错信息；如果Promise对象抓取数据成功（fulfilled状态），组件显示获取的数据。
