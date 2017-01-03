@@ -166,7 +166,7 @@ var LikeButton = React.createClass({
     }
 });
 ReactDOM.render(
-        <LikeButton />,
+    <LikeButton />,
     document.getElementById('example')
 )
 ```
@@ -187,19 +187,19 @@ ReactDOM.render(
 可以通过 getDefaultProps() 方法为 props 设置默认值，见代码：
 ```javascript
 var HelloMessage = React.createClass({
-  getDefaultProps: function() {
-    return {
-      name: 'Jack'
-    };
-  },
-  render: function() {
-    return <h1>Hello {this.props.name}</h1>;
-  }
+    getDefaultProps: function() {
+        return {
+            name: 'Jack'
+        };
+    },
+    render: function() {
+        return <h1>Hello {this.props.name}</h1>;
+    }
 });
 
 ReactDOM.render(
-  <HelloMessage />,
-  document.getElementById('example')
+    <HelloMessage />,
+    document.getElementById('example')
 );
 ```
 ##### b）、Props 验证
@@ -227,3 +227,57 @@ ReactDOM.render(
     document.getElementById("example")
 )
 ```
+#### 五、React 组件 API
+* 组件有基本7种方法：
+* 设置状态：setState
+* 替换状态：replaceState
+* 设置属性setProps
+* 替换属性replaceProps
+* 强制更新：forceUpdate
+* 获取DOM节点：findDOMNode
+* 判断组件挂载状态：isMounted
+实例：
+```javascript
+var ComponentApi = React.createClass({
+    getInitialState:function() {
+        return {
+            clickCount : 0
+        }
+    },
+    handleClick:function(){
+        this.setState({
+            clickCount:this.state.clickCount+1
+        })
+    },
+//        handleClick:function () {
+//            this.setState(function (state) {
+//                return {
+//                    clickCount:state.clickCount+1
+//                }
+//            })
+//        },
+    render:function () {
+        return (
+            <h1 onClick={this.handleClick}>{this.props.content}{this.state.clickCount}</h1>
+        )
+    }
+})
+ReactDOM.render(
+    <ComponentApi content="点击我,点击次数为"/>,
+    document.getElementById('example')
+)
+```
+#### 六、React 组件生命周期
+组件的生命周期可分成三个状态：
+* Mounting：已插入真实 DOM
+* Updating：正在被重新渲染
+* Unmounting：已移出真实 DOM
+React 为每个状态都提供了两种处理函数，will 函数在进入状态之前调用，did 函数在进入状态之后调用，三种状态共计五种处理函数。
+* componentWillMount()
+* componentDidMount()
+* componentWillUpdate(object nextProps, object nextState)
+* componentDidUpdate(object prevProps, object prevState)
+* componentWillUnmount()
+此外，React 还提供两种特殊状态的处理函数。
+* componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用
+* shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用
