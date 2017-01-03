@@ -291,36 +291,57 @@ React 为每个状态都提供了两种处理函数，will 函数在进入状态
 var Hello = React.createClass({
     getInitialState: function () {
         return {
-            opacity: 1.0
-        };
+            opacity: 1.0,
+            width: '100px',
+            height: '100px',
+            bgColor: 'red'
+        }
     },
-
+    //  组件进入真实DOM之后
     componentDidMount: function () {
-        this.timer = setInterval(function () {
-            var opacity = this.state.opacity;
+//            this.timer = setInterval(function () {
+//                var opacity = this.state.opacity;
+//                opacity -= .05;
+//                if (opacity < 0.1) {
+//                    opacity = 1.0;
+//                }
+//                this.setState({
+//                    opacity: opacity
+//                });
+//            }.bind(this), 100);
+        var _this = this;
+        var timter=setInterval(function () {
+            var opacity = _this.state.opacity;
+            var width = parseInt(_this.state.width);
+            width += 1;
             opacity -= .05;
             if (opacity < 0.1) {
                 opacity = 1.0;
             }
-            this.setState({
-                opacity: opacity
+            if (width >= 500) {
+                clearInterval(timter)
+            }
+            _this.setState({
+                opacity: opacity,
+                bgColor: 'green',
+                width: width
             });
-        }.bind(this), 100);
-    },
+        },50)
 
+    },
     render: function () {
         return (
-                <div style={{opacity: this.state.opacity}}>
-                    Hello {this.props.name}
-                </div>
+            <div style={{opacity: this.state.opacity, width: this.state.width, height: this.state.height, background: this.state.bgColor, lineHeight: this.state.height, color: '#fff', textAlign: 'center'
+            }}>
+                Hello {this.props.name}
+            </div>
         );
     }
-});
-
+})
 ReactDOM.render(
-        <Hello name="world"/>,
-    document.body
-);
+        <Hello name="jack"/>,
+    document.getElementById("example")
+)
 ```
 
 #### 七、React Refs（真实的DOM节点）
@@ -335,15 +356,15 @@ var MyInput = React.createClass({
     },
     render: function () {
         return (
-	    <div>
-		<input type="text" ref="myText" placeholder="说点什么吧"/>
-		<input type="button" ref="button" value="Focus the text input" onClick={this.handleClick}/>
-	    </div>
+            <div>
+                <input type="text" ref="myText" placeholder="说点什么吧"/>
+                <input type="button" ref="button" value="Focus the text input" onClick={this.handleClick}/>
+            </div>
         )
     }
 });
 ReactDOM.render(
-    <MyInput/>,
+        <MyInput/>,
     document.getElementById('example')
 )
 ```
