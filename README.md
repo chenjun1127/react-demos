@@ -11,6 +11,7 @@ React 拥有较高的性能，代码逻辑非常简单，越来越多的人已�
 * JSX − JSX 是 JavaScript 语法的扩展。React 开发不一定使用 JSX ，但我们建议使用它。
 * 组件 − 通过 React 构建组件，使得代码更加容易得到复用，能够很好的应用在大项目的开发中。
 * 单向响应的数据流 − React 实现了单向响应的数据流，从而减少了重复代码，这也是它为什么比传统数据绑定更简单。
+
 ### React 安装
 React 可以直接下载使用，可以从[官网](https://facebook.github.io/react/)下载最新版。也可以使用React CDN 库; 
 ```javascript
