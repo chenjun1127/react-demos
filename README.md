@@ -287,6 +287,7 @@ React 为每个状态都提供了两种处理函数，will 函数在进入状态
 
 * componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用
 * shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用
+
 #### 七、React Refs（真实的DOM节点）
 组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 ref 属性；
 ```javascript
@@ -367,7 +368,8 @@ var UserGist = React.createClass({
     render: function () {
         return (
             <div>
-                My name is {this.state.userName},my blog is <a href={this.state.baseUrl}>{this.state.baseUrl}</a> !
+                My name is {this.state.userName},
+		my blog is <a href={this.state.baseUrl}>{this.state.baseUrl}</a> !
             </div>
         );
     }
@@ -406,7 +408,8 @@ var RepoList = React.createClass({
                 (key) => {
                     return(
                         <li>
-                            <a href={key.html_url}>{key.name}</a> ({key.stargazers_count} stars) <br/> {key.description}
+                            <a href={key.html_url}>{key.name}</a> 
+			    ({key.stargazers_count} stars) <br/> {key.description}
                         </li>
                     )
                 }
