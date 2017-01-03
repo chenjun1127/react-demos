@@ -300,10 +300,10 @@ var MyInput = React.createClass({
     },
     render: function () {
         return (
-                <div>
-                    <input type="text" ref="myText" placeholder="说点什么吧"/>
-                    <input type="button" ref="button" value="Focus the text input" onClick={this.handleClick}/>
-                </div>
+	    <div>
+		<input type="text" ref="myText" placeholder="说点什么吧"/>
+		<input type="button" ref="button" value="Focus the text input" onClick={this.handleClick}/>
+	    </div>
         )
     }
 });
