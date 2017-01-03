@@ -134,3 +134,96 @@ ReactDOM.render(
     document.getElementById('example')
 )
 ```
+#### 三、React State(状态)
+React 把组件看成是一个状态机（State Machines）。通过与用户的交互，实现不同状态，然后渲染 UI，让用户界面和数据保持一致。
+React 里，只需更新组件的 state，然后根据新的 state 重新渲染用户界面（不要操作 DOM）。
+```javascript
+var LikeButton = React.createClass({
+    // 默认属性
+    getDefaultProps: function () {
+        return {
+            bgColor: 'green',
+            color: '#fff'
+        };
+    },
+    getInitialState: function () {
+        return {liked: false};
+    },
+    handleClick: function () {
+        this.setState({
+            liked: !this.state.liked
+        });
+        this.refs.p.style.backgroundColor = this.state.liked ? 'green' : 'red';
+    },
+    render: function () {
+        var text = this.state.liked ? 'like' : 'haven\'t liked';
+        return (
+            <p onClick={this.handleClick} ref="p"
+               style={{backgroundColor: this.props.bgColor, color: this.props.color}}>
+                You {text} this. Click to toggle.
+            </p>
+        )
+    }
+});
+ReactDOM.render(
+        <LikeButton />,
+    document.getElementById('example')
+)
+```
+#### 四、React Props(属性)
+React 组件可以通过 Props 来传递数据。state 和 props 主要的区别在于 props 是不可变的，而 state 可以根据与用户交互来改变。这就是为什么有些容器组件需要定义 state 来更新和修改数据。
+```javascript
+var HelloMessage = React.createClass({
+render: function () {
+    return <h1 title={this.props.title}>hello {this.props.name}</h1>;
+}
+});
+ReactDOM.render(
+    <HelloMessage name="Jack" title="My name is Jack"/>,
+    document.getElementById('example')
+)
+```
+##### a）、默认 Props
+可以通过 getDefaultProps() 方法为 props 设置默认值，见代码：
+```javascript
+var HelloMessage = React.createClass({
+  getDefaultProps: function() {
+    return {
+      name: 'Jack'
+    };
+  },
+  render: function() {
+    return <h1>Hello {this.props.name}</h1>;
+  }
+});
+
+ReactDOM.render(
+  <HelloMessage />,
+  document.getElementById('example')
+);
+```
+##### b）、Props 验证
+Props 验证使用 propTypes，它可以保证我们的应用组件被正确使用，React.PropTypes 提供很多验证器 (validator) 来验证传入数据是否有效。当向 props 传入无效数据时，JavaScript 控制台会抛出警告。
+```javascript
+//PropTypes验证组件实例的类属性是否符合要求
+var price = 5, name = "苹果";
+var Component = React.createClass({
+    // 默认属性
+    getDefaultProps: function () {
+        return {
+            text: '你要多少斤？'
+        };
+    },
+    propTypes: {
+        title: React.PropTypes.number.isRequired,
+        name: React.PropTypes.string.isRequired
+    },
+    render: function () {
+        return <h1>{this.props.name}的价格是{this.props.title}元。{this.props.text}</h1>
+    }
+})
+ReactDOM.render(
+    <Component title={price} name={name}/>,
+    document.getElementById("example")
+)
+```
