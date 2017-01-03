@@ -287,6 +287,41 @@ React 为每个状态都提供了两种处理函数，will 函数在进入状态
 
 * componentWillReceiveProps(object nextProps)：已加载组件收到新的参数时调用
 * shouldComponentUpdate(object nextProps, object nextState)：组件判断是否重新渲染时调用
+```javascript
+var Hello = React.createClass({
+    getInitialState: function () {
+        return {
+            opacity: 1.0
+        };
+    },
+
+    componentDidMount: function () {
+        this.timer = setInterval(function () {
+            var opacity = this.state.opacity;
+            opacity -= .05;
+            if (opacity < 0.1) {
+                opacity = 1.0;
+            }
+            this.setState({
+                opacity: opacity
+            });
+        }.bind(this), 100);
+    },
+
+    render: function () {
+        return (
+                <div style={{opacity: this.state.opacity}}>
+                    Hello {this.props.name}
+                </div>
+        );
+    }
+});
+
+ReactDOM.render(
+        <Hello name="world"/>,
+    document.body
+);
+```
 
 #### 七、React Refs（真实的DOM节点）
 组件并不是真实的 DOM 节点，而是存在于内存之中的一种数据结构，叫做虚拟 DOM （virtual DOM）。只有当它插入文档以后，才会变成真实的 DOM 。根据 React 的设计，所有的 DOM 变动，都先在虚拟 DOM 上发生，然后再将实际发生变动的部分，反映在真实 DOM上，这种算法叫做 DOM diff ，它可以极大提高网页的性能表现。但是，有时需要从组件获取真实 DOM 的节点，这时就要用到 ref 属性；
