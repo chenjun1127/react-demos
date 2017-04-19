@@ -2,7 +2,7 @@
 ### 如何执行
 ####  1、将项目克隆到本地，cd到Webpack+Es6+React
 ```javascript
-git@github.com:kiss19861127/React.git
+git clone git@github.com:kiss19861127/React.git
 cd Webpack+Es6+React
 ```
 #### 2、安装依赖
