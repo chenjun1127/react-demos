@@ -27,6 +27,7 @@ npm install babel-loader babel-core babel-preset-react babel-preset-es2015 --sav
 
 ### 2、代码部分
 最终的目录结构类似于这样：
+```javascript
 --your project
   |--components（组件目录）
     |--Hello（组件1）
@@ -43,6 +44,7 @@ npm install babel-loader babel-core babel-preset-react babel-preset-es2015 --sav
     |--bundle.js（输出文件，由 webpack 打包后生成的）
   |--package.json
   |--webpack.config.js
+```
 
 ### 3、webpack配置
 
