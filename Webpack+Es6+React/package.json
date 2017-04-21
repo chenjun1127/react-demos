@@ -2,7 +2,7 @@
 	"name": "Webpack-es6-react-demo",
 	"version": "1.0.0",
 	"description": "",
-	"main": "",
+	"main": "index.js",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"build": "webpack",

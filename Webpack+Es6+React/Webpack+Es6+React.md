@@ -30,15 +30,8 @@ npm install babel-loader babel-core babel-preset-react babel-preset-es2015 --sav
 ```javascript
 --your project
   |--components（组件目录）
-    |--Hello（组件1）
-      |--imgs
-        |--bg.png
-      |--index.js
-      |--index.sass
-    |--World（组件2）
-      |--index.js
-      |--index.sass
-    |--index.js（入口文件）
+    ...
+  |--index.js（入口文件）
   |--build（输出目录）
     |--index.html
     |--bundle.js（输出文件，由 webpack 打包后生成的）
