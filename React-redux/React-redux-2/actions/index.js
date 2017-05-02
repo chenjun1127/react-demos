@@ -4,7 +4,4 @@ const increaseAction = (count, text) => {
 const decreaseAction = (count, text) => {
     return {type: 'decrease', count, text}
 }
-export {
-    increaseAction,
-    decreaseAction
-}
+export {increaseAction, decreaseAction}

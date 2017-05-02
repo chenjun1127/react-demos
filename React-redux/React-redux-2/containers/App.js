@@ -17,5 +17,4 @@ function mapDispatchToProps(dispatch) {
 
 // Connected Component
 const App = connect(mapStateToProps, mapDispatchToProps)(Counter)
-
 export default App

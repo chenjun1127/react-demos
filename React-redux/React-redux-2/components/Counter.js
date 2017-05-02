@@ -1,15 +1,15 @@
-import React,{Component} from 'react'
+import React, {Component} from 'react'
 
 class Counter extends Component {
     render() {
-		console.log(this)
-        const {value, onIncreaseClick,text,onDecreaseClick} = this.props
+        console.log(this)
+        const {value, onIncreaseClick, text, onDecreaseClick} = this.props
         return (
             <div>
                 <span>{value}</span>
-				<p>{text}</p>
+                <p>{text}</p>
                 <button onClick={onIncreaseClick}>Increase</button>
-				<button onClick={onDecreaseClick}>Decrease</button>
+                <button onClick={onDecreaseClick}>Decrease</button>
             </div>
         )
     }

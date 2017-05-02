@@ -1,4 +1,4 @@
-﻿var path = require('path');
+var path = require('path');
 var webpack = require('webpack');
 var ROOT_PATH = path.resolve(__dirname);
 var APP_PATH = path.resolve(__dirname, './index.js');
@@ -14,14 +14,16 @@ module.exports = {
         port: 8100
     },
     module: {
-        loaders: [{
-            test: /\.js$/,
-            exclude: /node_modules/,
-            loader: "babel-loader",
-            query: {
-                presets: ['react', 'es2015']
+        loaders: [
+            {
+                test: /\.js$/,
+                exclude: /node_modules/,
+                loader: "babel-loader",
+                query: {
+                    presets: ['react', 'es2015']
+                }
             }
-        }]
+        ]
     }
 
 }
