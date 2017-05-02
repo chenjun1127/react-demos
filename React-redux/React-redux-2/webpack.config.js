@@ -10,7 +10,7 @@ module.exports = {
         filename: 'bundle.js'
     },
     devServer: {
-        inline: true, //实时刷新
+        inline: true, 
         port: 8100
     },
     module: {

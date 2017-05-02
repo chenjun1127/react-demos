@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux';
 import Counter from '../components/Counter';
-import {increaseAction, decreaseAction} from '../actions'
+import {increaseAction, decreaseAction} from '../actions';
 // Map Redux state to component props
 function mapStateToProps(state) {
     return {value: state.count, text: state.text}
