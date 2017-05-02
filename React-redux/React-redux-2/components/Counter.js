@@ -1,17 +1,17 @@
-import React, { Component } from 'react'
-export default class Counter extends Component {
+import React,{Component} from 'react'
+
+class Counter extends Component {
     render() {
-        const {value, onIncreaseClick,onDecreaseClick} = this.props;
+		console.log(this)
+        const {value, onIncreaseClick,text,onDecreaseClick} = this.props
         return (
             <div>
-                <h1>{value}</h1>
+                <span>{value}</span>
+				<p>{text}</p>
                 <button onClick={onIncreaseClick}>Increase</button>
-                <button onClick={onDecreaseClick}>Decrease</button>
+				<button onClick={onDecreaseClick}>Decrease</button>
             </div>
         )
     }
 }
-// Counter.propTypes = {
-//     value: React.PropTypes.number.isRequired,
-//     onIncreaseClick: React.PropTypes.func.isRequired
-// };
+export default Counter
