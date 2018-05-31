@@ -1,0 +1,15 @@
+/**
+ * @dateTime:2018/05/30 10:57:52
+ * @author:ChenJun
+ * @desc:babel-plugin-syntax-dynamic-import
+ */
+{
+    "presets": [
+        "env",
+        "react"
+    ],
+    "plugins": [
+        "react-hot-loader/babel"
+//        "syntax-dynamic-import"
+    ]
+}

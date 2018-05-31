@@ -1,0 +1,28 @@
+/*
+* @Author: 0easy-23
+* @Date:   2018-05-29 13:39:53
+* @Last Modified by:   chenjun
+* @Last Modified time: 2018-05-31 15:54:12
+*/
+$color-1: #adadad;
+input::placeholder {
+    color: gray;
+}
+
+.menu {
+    color: $color-1;
+    display: flex;
+    padding: 0;
+    li {
+        list-style: none;
+        margin-right: 10px;
+        a {
+            text-decoration: none;
+            color: #333;
+            &:hover {
+                text-decoration: underline;
+                color: #f23055;
+            }
+        }
+    }
+}
