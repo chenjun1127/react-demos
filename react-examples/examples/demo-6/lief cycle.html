@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>生命周期</title>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/react-dom.js"></script>
+    <script src="../../build/browser.min.js"></script>
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var Hello = React.createClass({
+        getInitialState: function () {
+            return {
+                opacity: 1.0,
+                width: '100px',
+                height: '100px',
+                bgColor: 'red'
+            }
+        },
+        //  组件进入真实DOM之后
+        componentDidMount: function () {
+//            this.timer = setInterval(function () {
+//                var opacity = this.state.opacity;
+//                opacity -= .05;
+//                if (opacity < 0.1) {
+//                    opacity = 1.0;
+//                }
+//                this.setState({
+//                    opacity: opacity
+//                });
+//            }.bind(this), 100);
+            var _this = this;
+            var timter=setInterval(function () {
+                var opacity = _this.state.opacity;
+                var width = parseInt(_this.state.width);
+                width += 1;
+                opacity -= .05;
+                if (opacity < 0.1) {
+                    opacity = 1.0;
+                }
+                if (width >= 500) {
+                    clearInterval(timter)
+                }
+                _this.setState({
+                    opacity: opacity,
+                    bgColor: 'green',
+                    width: width
+                });
+            },50)
+
+        },
+        render: function () {
+            return (
+                <div style={{opacity: this.state.opacity, width: this.state.width, height: this.state.height, background: this.state.bgColor, lineHeight: this.state.height, color: '#fff', textAlign: 'center'
+                }}>
+                    Hello {this.props.name}
+                </div>
+            );
+        }
+    })
+    ReactDOM.render(
+        <Hello name="jack"/>,
+        document.getElementById("example")
+    );
+</script>
+</body>
+</html>

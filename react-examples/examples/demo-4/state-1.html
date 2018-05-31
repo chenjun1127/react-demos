@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>this.state -- 状态机</title>
+    <script src="../../build/react.js"></script>
+    <script src="../../build/react-dom.js"></script>
+    <script src="../../build/browser.min.js"></script>
+    <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.4/css/bootstrap.css" rel="stylesheet">
+</head>
+<body>
+<div id="example"></div>
+<script type="text/babel">
+    var LikeButton = React.createClass({
+        // 默认属性
+        getDefaultProps: function () {
+            return {
+                bgColor: 'green',
+                color: '#fff'
+            };
+        },
+        getInitialState: function () {
+            return {liked: false};
+        },
+        handleClick: function () {
+            this.setState({
+                liked: !this.state.liked
+            });
+            this.refs.p.style.backgroundColor = this.state.liked ? 'green' : 'red';
+        },
+        render: function () {
+            var text = this.state.liked ? 'like' : 'haven\'t liked';
+            return (
+                <p onClick={this.handleClick} ref="p"
+                   style={{backgroundColor: this.props.bgColor, color: this.props.color}}>
+                    You {text} this. Click to toggle.
+                </p>
+            )
+        }
+    });
+    ReactDOM.render(
+        <LikeButton />,
+        document.getElementById('example')
+    )
+
+</script>
+</body>
+</html>
