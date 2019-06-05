@@ -5,7 +5,7 @@
  * @Last Modified time: 2018-05-29 15:14:15
  */
 import React from 'react';
-import {BrowserRouter as Router, Switch, Route, Redirect, Link} from 'react-router-dom';
+import {HashRouter as Router, Switch, Route, Redirect, Link} from 'react-router-dom';
 import Loading from '../common/Loading';
 import About from '../components/About';
 import Events from '../components/Events';
